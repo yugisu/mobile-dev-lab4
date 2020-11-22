@@ -16,11 +16,11 @@ type Props = {
 export const AddMovieScreen = ({ navigation }: Props) => {
   const [movieDraft, setMovieDraft] = useState<TMovieDTO>(() => getInitialMovieDraft());
 
-  const validationErrors = useMemo(() => {
+  const validationErrors = useMemo((): Partial<Record<keyof TMovieDTO, boolean>> => {
     return {
-      year: movieDraft.year.length === 0 || Number.isNaN(Number(movieDraft.year)),
-      title: movieDraft.title.length === 0,
-      type: movieDraft.type.length === 0,
+      Year: movieDraft.Year.length === 0 || Number.isNaN(Number(movieDraft.Year)),
+      Title: movieDraft.Title.length === 0,
+      Type: movieDraft.Type.length === 0,
     };
   }, [movieDraft]);
 
@@ -48,19 +48,19 @@ export const AddMovieScreen = ({ navigation }: Props) => {
         <View style={{ paddingHorizontal: 15, paddingTop: 15 }}>
           <Text>Title*</Text>
 
-          <FieldInput value={movieDraft.title} onChangeText={bindInputToMovieField("title")} />
+          <FieldInput value={movieDraft.Title} onChangeText={bindInputToMovieField("Title")} />
         </View>
 
         <View style={{ paddingHorizontal: 15, paddingTop: 10 }}>
           <Text>Type*</Text>
 
-          <FieldInput value={movieDraft.type} onChangeText={bindInputToMovieField("type")} />
+          <FieldInput value={movieDraft.Type} onChangeText={bindInputToMovieField("type")} />
         </View>
 
         <View style={{ paddingHorizontal: 15, paddingTop: 10 }}>
           <Text>Year*</Text>
 
-          <FieldInput value={movieDraft.year} onChangeText={bindInputToMovieField("year")} />
+          <FieldInput value={movieDraft.Year} onChangeText={bindInputToMovieField("Year")} />
         </View>
 
         <View style={{ paddingHorizontal: 15, paddingTop: 15 }}>
@@ -79,10 +79,24 @@ const FieldInput = styled.TextInput`
 
 function getInitialMovieDraft(): TMovieDTO {
   return {
+    Title: "",
+    Year: "",
+    Rated: "",
+    Released: "",
+    Runtime: "",
+    Genre: "",
+    Director: "",
+    Writer: "",
+    Actors: "",
+    Plot: "",
+    Language: "",
+    Country: "",
+    Awards: "",
+    Poster: "",
+    imdbRating: "",
+    imdbVotes: "",
     imdbID: "noid",
-    poster: "",
-    title: "",
-    type: "",
-    year: "",
+    Type: "",
+    Production: "",
   };
 }

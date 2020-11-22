@@ -18,10 +18,10 @@ export const MovieListScreen = ({ navigation }: Props) => {
 
   const { movies } = useContext(MovieContext);
 
-  const moviesToDisplay = useMemo(() => movies.filter((movie) => movie.title?.toLowerCase().includes(searchQuery.toLowerCase())), [
-    searchQuery,
-    movies,
-  ]);
+  const moviesToDisplay = useMemo(
+    () => (searchQuery ? movies.filter((movie) => movie.Title?.toLowerCase().includes(searchQuery.toLowerCase())) : movies),
+    [searchQuery, movies]
+  );
 
   const handleOpenMovieDetails = useCallback((movieId: number) => navigation.navigate(Routes.MOVIE_DETAILS, { movieId }), [navigation]);
 

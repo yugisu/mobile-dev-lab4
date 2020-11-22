@@ -38,7 +38,7 @@ export const MovieList = ({ movies, onOpenMovieDetails }: Props) => {
 };
 
 function openRemoveMovieAlert(movie: TMovie, onRemove: (movieId: number) => void) {
-  Alert.alert("Remove movie", `Do you want to remove movie "${movie.title}"?`, [
+  Alert.alert("Remove movie", `Do you want to remove movie "${movie.Title}"?`, [
     {
       text: "Cancel",
       style: "cancel",

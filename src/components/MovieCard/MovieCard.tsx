@@ -11,22 +11,18 @@ type Props = {
 export const MovieCard = ({ movie }: Props) => {
   return (
     <Container>
-      <View style={{ paddingBottom: 10 }}>
-        <Title>{movie.title}</Title>
-      </View>
-
       <View>
-        <Text>
-          Type: {movie.type} | Year: {movie.year}
-        </Text>
-      </View>
+        <View style={{ paddingBottom: 10 }}>
+          <Title>
+            {movie.Title} {movie.Year}
+          </Title>
+        </View>
 
-      <View>
-        <Text>imDB id: {movie.imdbID}</Text>
-      </View>
-
-      <View>
-        <Text>Poster name: {movie.poster}</Text>
+        <View>
+          <Text>{movie.Type}</Text>
+          <Text>{movie.Genre}</Text>
+          <Text>IMDB: {movie.imdbRating}</Text>
+        </View>
       </View>
     </Container>
   );

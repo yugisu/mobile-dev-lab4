@@ -4,7 +4,7 @@ import { TMovie, TMovieDTO } from "types/Movie.type";
 
 import moviesList from "static/MoviesList.json";
 
-const transformedMovieListData = moviesList.search.map((movie, idx) => ({ ...movie, id: moviesList.search.length - idx }));
+const transformedMovieListData = moviesList.map((movie, idx) => ({ ...movie, id: moviesList.length - idx }));
 
 export const useMovieData = () => {
   const [movies, setMovies] = useState<TMovie[]>(transformedMovieListData);

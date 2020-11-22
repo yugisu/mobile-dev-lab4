@@ -26,18 +26,30 @@ export const MovieDetailsScreen = ({ route }: Props) => {
       <ScreenContainer>
         {movieToDisplay ? (
           <>
-            {Boolean(movieToDisplay.poster && PosterImages[movieToDisplay.poster]) && (
-              <Image source={PosterImages[movieToDisplay.poster]} style={{ width: "100%" }} />
+            {Boolean(movieToDisplay.Poster && PosterImages[movieToDisplay.Poster]) && (
+              <Image source={PosterImages[movieToDisplay.Poster]} style={{ width: "100%" }} />
             )}
 
             <View style={{ paddingHorizontal: 15, paddingTop: 15 }}>
-              <ScreenTitle>{movieToDisplay.title}</ScreenTitle>
+              <ScreenTitle>{movieToDisplay.Title}</ScreenTitle>
             </View>
 
             <View style={{ paddingHorizontal: 15, paddingTop: 15 }}>
-              <Text>IMDB id: {movieToDisplay.imdbID}</Text>
-              <Text>Type: {movieToDisplay.type}</Text>
-              <Text>Year: {movieToDisplay.year}</Text>
+              <Text>
+                IMDB: {movieToDisplay.imdbRating} ({movieToDisplay.imdbVotes} votes)
+              </Text>
+            </View>
+
+            <View style={{ paddingHorizontal: 15, paddingTop: 15 }}>
+              <Text>{movieToDisplay.Type}</Text>
+              <Text>Year: {movieToDisplay.Year}</Text>
+              <Text>Rated: {movieToDisplay.Rated}</Text>
+              <Text>Released: {movieToDisplay.Released}</Text>
+              <Text>Runtime: {movieToDisplay.Runtime}</Text>
+              <Text>Genre: {movieToDisplay.Genre}</Text>
+              <Text>Director: {movieToDisplay.Director}</Text>
+              <Text>Writer: {movieToDisplay.Writer}</Text>
+              <Text>Actors: {movieToDisplay.Actors}</Text>
             </View>
           </>
         ) : (
