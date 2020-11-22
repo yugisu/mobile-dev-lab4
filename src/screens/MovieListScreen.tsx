@@ -1,34 +1,43 @@
-import React, { useMemo, useState } from "react";
-import { TextInput, View } from "react-native";
+import React, { useCallback, useContext, useMemo, useState } from "react";
+import { View } from "react-native";
 import styled from "styled-components/native";
 import { ScrollView } from "react-native-gesture-handler";
 
-import movieListData from "static/MoviesList.json";
+import { Routes } from "constants/Routes";
+import { MovieContext } from "providers/MovieProvider";
 
-import { MovieList } from "components/MovieList/MovieList";
 import { ScreenContainer, ScreenTitle } from "components/styled";
+import { MovieList } from "components/MovieList/MovieList";
 
-export const MovieListScreen = () => {
+type Props = {
+  navigation: any;
+};
+
+export const MovieListScreen = ({ navigation }: Props) => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const moviesToDisplay = useMemo(
-    () => movieListData.search.filter((movie) => movie.title?.toLowerCase().includes(searchQuery.toLowerCase())),
-    [searchQuery]
-  );
+  const { movies } = useContext(MovieContext);
+
+  const moviesToDisplay = useMemo(() => movies.filter((movie) => movie.title?.toLowerCase().includes(searchQuery.toLowerCase())), [
+    searchQuery,
+    movies,
+  ]);
+
+  const handleOpenMovieDetails = useCallback((movieId: number) => navigation.navigate(Routes.MOVIE_DETAILS, { movieId }), []);
 
   return (
     <ScrollView>
       <ScreenContainer>
-        <View style={{ paddingHorizontal: 15 }}>
+        <View style={{ paddingTop: 15, paddingHorizontal: 15 }}>
           <ScreenTitle>Movies</ScreenTitle>
         </View>
 
         <View style={{ paddingTop: 15, paddingHorizontal: 15 }}>
-          <SearchInput value={searchQuery} onChangeText={(text) => setSearchQuery(text)} />
+          <SearchInput value={searchQuery} onChangeText={(text) => setSearchQuery(text)} placeholder="Search movies..." />
         </View>
 
         <MovieCardsContainer>
-          <MovieList movies={moviesToDisplay} />
+          <MovieList movies={moviesToDisplay} onOpenMovieDetails={handleOpenMovieDetails} />
         </MovieCardsContainer>
       </ScreenContainer>
     </ScrollView>

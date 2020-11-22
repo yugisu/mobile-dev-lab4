@@ -1,19 +1,31 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React, { useContext } from "react";
+import { Alert, Text, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 import type { TMovie } from "types/Movie.type";
+import { MovieContext } from "providers/MovieProvider";
 
 import { MovieCard } from "components/MovieCard/MovieCard";
 
 type Props = {
   movies: TMovie[];
+  onOpenMovieDetails: (movieId: number) => void;
 };
 
-export const MovieList = ({ movies }: Props) => {
+export const MovieList = ({ movies, onOpenMovieDetails }: Props) => {
+  const { removeMovie } = useContext(MovieContext);
+
   return (
     <View style={{ height: "100%" }}>
       {movies.map((movie, idx) => (
-        <MovieCard movie={movie} key={idx} />
+        <TouchableOpacity
+          onPress={() => onOpenMovieDetails(movie.id)}
+          onLongPress={() => openRemoveMovieAlert(movie, removeMovie)}
+          activeOpacity={0.6}
+          key={idx}
+        >
+          <MovieCard movie={movie} />
+        </TouchableOpacity>
       ))}
 
       {!movies.length && (
@@ -24,3 +36,17 @@ export const MovieList = ({ movies }: Props) => {
     </View>
   );
 };
+
+function openRemoveMovieAlert(movie: TMovie, onRemove: (movieId: number) => void) {
+  Alert.alert("Remove movie", `Do you want to remove movie "${movie.title}"?`, [
+    {
+      text: "Cancel",
+      style: "cancel",
+    },
+    {
+      text: "Remove",
+      onPress: () => onRemove(movie.id),
+      style: "destructive",
+    },
+  ]);
+}
