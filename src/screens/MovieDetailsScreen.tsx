@@ -14,7 +14,7 @@ type Props = {
   route: Route<typeof Routes.MOVIE_DETAILS, { movieId: number }>;
 };
 
-export const MovieDetailsScreen = ({ route, navigation }: Props) => {
+export const MovieDetailsScreen = ({ route }: Props) => {
   const { movieId } = route.params;
 
   const { movies } = useContext(MovieContext);

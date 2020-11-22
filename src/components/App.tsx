@@ -13,6 +13,7 @@ import { MovieProvider } from "providers/MovieProvider";
 
 import { MovieListScreen } from "screens/MovieListScreen";
 import { MovieDetailsScreen } from "screens/MovieDetailsScreen";
+import { AddMovieScreen } from "screens/AddMovieScreen";
 
 const Tab = createBottomTabNavigator();
 const Movie = createStackNavigator();
@@ -44,6 +45,7 @@ export const App = () => {
                 <Movie.Navigator>
                   <Movie.Screen name={Routes.MOVIES_LIST} component={MovieListScreen} />
                   <Movie.Screen name={Routes.MOVIE_DETAILS} component={MovieDetailsScreen} />
+                  <Movie.Screen name={Routes.ADD_MOVIE} component={AddMovieScreen} />
                 </Movie.Navigator>
               )}
             </Tab.Screen>

@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useMemo, useState } from "react";
-import { View } from "react-native";
+import { Button, View } from "react-native";
 import styled from "styled-components/native";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -23,13 +23,17 @@ export const MovieListScreen = ({ navigation }: Props) => {
     movies,
   ]);
 
-  const handleOpenMovieDetails = useCallback((movieId: number) => navigation.navigate(Routes.MOVIE_DETAILS, { movieId }), []);
+  const handleOpenMovieDetails = useCallback((movieId: number) => navigation.navigate(Routes.MOVIE_DETAILS, { movieId }), [navigation]);
 
   return (
     <ScrollView>
       <ScreenContainer>
         <View style={{ paddingTop: 15, paddingHorizontal: 15 }}>
           <ScreenTitle>Movies</ScreenTitle>
+        </View>
+
+        <View style={{ paddingTop: 15, paddingHorizontal: 15 }}>
+          <Button title="Add new movie" onPress={() => navigation.navigate(Routes.ADD_MOVIE)} />
         </View>
 
         <View style={{ paddingTop: 15, paddingHorizontal: 15 }}>
