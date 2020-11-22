@@ -54,7 +54,7 @@ export const AddMovieScreen = ({ navigation }: Props) => {
         <View style={{ paddingHorizontal: 15, paddingTop: 10 }}>
           <Text>Type*</Text>
 
-          <FieldInput value={movieDraft.Type} onChangeText={bindInputToMovieField("type")} />
+          <FieldInput value={movieDraft.Type} onChangeText={bindInputToMovieField("Type")} />
         </View>
 
         <View style={{ paddingHorizontal: 15, paddingTop: 10 }}>

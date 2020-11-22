@@ -36,7 +36,7 @@ export const MovieDetailsScreen = ({ route }: Props) => {
 
             <View style={{ paddingHorizontal: 15, paddingTop: 15 }}>
               <Text>
-                IMDB: {movieToDisplay.imdbRating} ({movieToDisplay.imdbVotes} votes)
+                IMDB: {movieToDisplay.imdbRating} {movieToDisplay.imdbVotes && `(${movieToDisplay.imdbVotes} votes)`}
               </Text>
             </View>
 
